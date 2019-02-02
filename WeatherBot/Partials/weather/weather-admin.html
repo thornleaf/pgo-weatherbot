@@ -1,0 +1,76 @@
+﻿<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Weather Admin</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            Forecast Date
+                        </label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="date" class="form-control" ng-model="wq.histDate" />
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-info" data-toggle="dropdown" ng-click="getHist(wq.histDate)" ng-disabled="!wq.histDate"><i class="fa fa-search"></i> Search</button>
+                                </div>
+                            </div>
+                            <input type="hidden" ng-model="wq.histDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Base Hour</label>
+                        <div class="col-sm-8">
+                            <select ng-model="config.baseHour.value" ng-change="updateConfig(config.baseHour)" class="form-control">
+                                <option value="0">12 AM</option>
+                                <option value="1">1 AM</option>
+                                <option value="2">2 AM</option>
+                                <option value="3">3 AM</option>
+                                <option value="4">4 AM</option>
+                                <option value="5">5 AM</option>
+                                <option value="6">6 AM</option>
+                                <option value="7">7 AM</option>
+                                <option value="8">8 AM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Forecast Duration</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" ng-model="wq.hr" min="1" max="12" step="1" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Force Discord</label>
+                        <div class="col-sm-8">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="server = 'ld'" ng-class="server == 'ld' && 'active'">
+                                    <i class="fa" ng-class="server == 'ld' && 'fa-dot-circle-o' || 'fa-circle-o'"></i> LD
+                                </button>
+                                <button type="button" class="btn btn-default" ng-click="discord(server)" ng-disabled="!server"><i class="fa fa-clock-o"></i> Now</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-disabled="!server">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="t in times">
+                                        <a href="" ng-click="discord(t.hr)" ng-bind="t.name"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#transModal"><i class="fa fa-cloud-upload"></i> Translations</button>
+                            <button class="btn btn-danger" ng-click="forceWeather()"><i class="fa fa-exclamation-triangle"></i> AccuWeather</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WeatherBotModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ConfigSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PgoWeathers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDay" Type="bit" />
+          <Property Name="IsNight" Type="bit" />
+          <Property Name="Friendly" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PokemonTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PokeUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="TrainerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TrainerLevel" Type="int" />
+          <Property Name="DiscordName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiscordTag" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="10" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="ResetToken" Type="uniqueidentifier" />
+          <Property Name="PwdHash" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="WeatherEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Hour" Type="int" />
+        </EntityType>
+        <EntityType Name="WeatherTranslations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IconText" Type="nvarchar" MaxLength="50" />
+          <Property Name="CanWindy" Type="bit" />
+          <Property Name="IsDay" Type="bit" />
+          <Property Name="IsNight" Type="bit" />
+          <Property Name="PgoIconId" Type="int" />
+          <Property Name="WindOverrideVal" Type="float" />
+        </EntityType>
+        <EntityType Name="WeatherTypes">
+          <Key>
+            <PropertyRef Name="TypeId" />
+            <PropertyRef Name="WeatherId" />
+          </Key>
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="WeatherId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WeatherValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="WeatherIcon" Type="int" />
+          <Property Name="IconPhrase" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDaylight" Type="bit" />
+          <Property Name="TempValue" Type="float" />
+          <Property Name="TempUnit" Type="nchar" MaxLength="1" />
+          <Property Name="WindSpeed" Type="float" />
+          <Property Name="WindUnit" Type="nvarchar" MaxLength="50" />
+          <Property Name="GustSpeed" Type="float" />
+          <Property Name="GustUnit" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrecipitationProbability" Type="float" />
+          <Property Name="RainProbability" Type="float" />
+          <Property Name="SnowProbability" Type="float" />
+          <Property Name="IceProbability" Type="float" />
+          <Property Name="CloudCover" Type="float" />
+          <Property Name="RainAmt" Type="float" />
+          <Property Name="RainUnit" Type="nvarchar" MaxLength="50" />
+          <Property Name="SnowAmt" Type="float" />
+          <Property Name="SnowUnit" Type="nvarchar" MaxLength="50" />
+          <Property Name="IceAmt" Type="float" />
+          <Property Name="IceUnit" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsCorrect" Type="bit" />
+          <Property Name="EntryId" Type="bigint" />
+          <Property Name="ActualIcon" Type="nvarchar" MaxLength="20" />
+          <Property Name="CalculatedIcon" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsBaseHour" Type="bit" />
+          <Property Name="PgoIconId" Type="int" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="ActualIconid" Type="int" />
+        </EntityType>
+        <Association Name="FK_WeatherTranslations_Weathers">
+          <End Role="PgoWeathers" Type="Self.PgoWeathers" Multiplicity="0..1" />
+          <End Role="WeatherTranslations" Type="Self.WeatherTranslations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PgoWeathers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeatherTranslations">
+              <PropertyRef Name="PgoIconId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeatherTypes_PgoWeathers">
+          <End Role="PgoWeathers" Type="Self.PgoWeathers" Multiplicity="1" />
+          <End Role="WeatherTypes" Type="Self.WeatherTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PgoWeathers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeatherTypes">
+              <PropertyRef Name="WeatherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeatherTypes_PokemonTypes">
+          <End Role="PokemonTypes" Type="Self.PokemonTypes" Multiplicity="1" />
+          <End Role="WeatherTypes" Type="Self.WeatherTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PokemonTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeatherTypes">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeatherValues_PgoWeathers">
+          <End Role="PgoWeathers" Type="Self.PgoWeathers" Multiplicity="0..1" />
+          <End Role="WeatherValues" Type="Self.WeatherValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PgoWeathers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeatherValues">
+              <PropertyRef Name="PgoIconId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeatherValues_WeatherEntry">
+          <End Role="WeatherEntry" Type="Self.WeatherEntry" Multiplicity="0..1" />
+          <End Role="WeatherValues" Type="Self.WeatherValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeatherEntry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeatherValues">
+              <PropertyRef Name="EntryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WeatherBotModelStoreContainer">
+          <EntitySet Name="ConfigSettings" EntityType="Self.ConfigSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PgoWeathers" EntityType="Self.PgoWeathers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PokemonTypes" EntityType="Self.PokemonTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PokeUsers" EntityType="Self.PokeUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeatherEntry" EntityType="Self.WeatherEntry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeatherTranslations" EntityType="Self.WeatherTranslations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeatherTypes" EntityType="Self.WeatherTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeatherValues" EntityType="Self.WeatherValues" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_WeatherTranslations_Weathers" Association="Self.FK_WeatherTranslations_Weathers">
+            <End Role="PgoWeathers" EntitySet="PgoWeathers" />
+            <End Role="WeatherTranslations" EntitySet="WeatherTranslations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeatherTypes_PgoWeathers" Association="Self.FK_WeatherTypes_PgoWeathers">
+            <End Role="PgoWeathers" EntitySet="PgoWeathers" />
+            <End Role="WeatherTypes" EntitySet="WeatherTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeatherTypes_PokemonTypes" Association="Self.FK_WeatherTypes_PokemonTypes">
+            <End Role="PokemonTypes" EntitySet="PokemonTypes" />
+            <End Role="WeatherTypes" EntitySet="WeatherTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeatherValues_PgoWeathers" Association="Self.FK_WeatherValues_PgoWeathers">
+            <End Role="PgoWeathers" EntitySet="PgoWeathers" />
+            <End Role="WeatherValues" EntitySet="WeatherValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeatherValues_WeatherEntry" Association="Self.FK_WeatherValues_WeatherEntry">
+            <End Role="WeatherEntry" EntitySet="WeatherEntry" />
+            <End Role="WeatherValues" EntitySet="WeatherValues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WeatherBotModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ConfigSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PgoWeather">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDay" Type="Boolean" />
+          <Property Name="IsNight" Type="Boolean" />
+          <Property Name="Friendly" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PokemonTypes" Relationship="Self.WeatherTypes" FromRole="PgoWeathers" ToRole="PokemonTypes" />
+        </EntityType>
+        <EntityType Name="PokemonType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PokeUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TrainerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TrainerLevel" Type="Int32" />
+          <Property Name="DiscordName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiscordTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="ResetToken" Type="Guid" />
+          <Property Name="PwdHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WeatherEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Hour" Type="Int32" />
+          <NavigationProperty Name="WeatherValues" Relationship="Self.FK_WeatherValues_WeatherEntry" FromRole="WeatherEntry" ToRole="WeatherValues" />
+        </EntityType>
+        <EntityType Name="WeatherTranslation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IconText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CanWindy" Type="Boolean" />
+          <Property Name="IsDay" Type="Boolean" />
+          <Property Name="IsNight" Type="Boolean" />
+          <Property Name="PgoIconId" Type="Int32" />
+          <Property Name="WindOverrideVal" Type="Double" />
+          <NavigationProperty Name="PgoWeather" Relationship="Self.FK_WeatherTranslations_Weathers" FromRole="WeatherTranslations" ToRole="PgoWeathers" />
+        </EntityType>
+        <EntityType Name="WeatherValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WeatherIcon" Type="Int32" />
+          <Property Name="IconPhrase" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDaylight" Type="Boolean" />
+          <Property Name="TempValue" Type="Double" />
+          <Property Name="TempUnit" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="WindSpeed" Type="Double" />
+          <Property Name="WindUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GustSpeed" Type="Double" />
+          <Property Name="GustUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrecipitationProbability" Type="Double" />
+          <Property Name="RainProbability" Type="Double" />
+          <Property Name="SnowProbability" Type="Double" />
+          <Property Name="IceProbability" Type="Double" />
+          <Property Name="CloudCover" Type="Double" />
+          <Property Name="RainAmt" Type="Double" />
+          <Property Name="RainUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SnowAmt" Type="Double" />
+          <Property Name="SnowUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IceAmt" Type="Double" />
+          <Property Name="IceUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsCorrect" Type="Boolean" />
+          <Property Name="EntryId" Type="Int64" />
+          <Property Name="ActualIcon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CalculatedIcon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsBaseHour" Type="Boolean" />
+          <Property Name="PgoIconId" Type="Int32" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="ActualIconid" Type="Int32" />
+          <NavigationProperty Name="PgoWeather" Relationship="Self.FK_WeatherValues_PgoWeathers" FromRole="WeatherValues" ToRole="PgoWeathers" />
+        </EntityType>
+        <Association Name="FK_WeatherTranslations_Weathers">
+          <End Role="PgoWeathers" Type="Self.PgoWeather" Multiplicity="0..1" />
+          <End Role="WeatherTranslations" Type="Self.WeatherTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PgoWeathers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeatherTranslations">
+              <PropertyRef Name="PgoIconId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeatherValues_PgoWeathers">
+          <End Role="PgoWeathers" Type="Self.PgoWeather" Multiplicity="0..1" />
+          <End Role="WeatherValues" Type="Self.WeatherValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PgoWeathers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeatherValues">
+              <PropertyRef Name="PgoIconId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeatherValues_WeatherEntry">
+          <End Role="WeatherEntry" Type="Self.WeatherEntry" Multiplicity="0..1" />
+          <End Role="WeatherValues" Type="Self.WeatherValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeatherEntry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeatherValues">
+              <PropertyRef Name="EntryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WeatherTypes">
+          <End Role="PgoWeathers" Type="Self.PgoWeather" Multiplicity="*" />
+          <End Role="PokemonTypes" Type="Self.PokemonType" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PokeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ConfigSettings" EntityType="Self.ConfigSetting" />
+          <EntitySet Name="PgoWeathers" EntityType="Self.PgoWeather" />
+          <EntitySet Name="PokemonTypes" EntityType="Self.PokemonType" />
+          <EntitySet Name="PokeUsers" EntityType="Self.PokeUser" />
+          <EntitySet Name="WeatherEntries" EntityType="Self.WeatherEntry" />
+          <EntitySet Name="WeatherTranslations" EntityType="Self.WeatherTranslation" />
+          <EntitySet Name="WeatherValues" EntityType="Self.WeatherValue" />
+          <AssociationSet Name="FK_WeatherTranslations_Weathers" Association="Self.FK_WeatherTranslations_Weathers">
+            <End Role="PgoWeathers" EntitySet="PgoWeathers" />
+            <End Role="WeatherTranslations" EntitySet="WeatherTranslations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeatherValues_PgoWeathers" Association="Self.FK_WeatherValues_PgoWeathers">
+            <End Role="PgoWeathers" EntitySet="PgoWeathers" />
+            <End Role="WeatherValues" EntitySet="WeatherValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeatherValues_WeatherEntry" Association="Self.FK_WeatherValues_WeatherEntry">
+            <End Role="WeatherEntry" EntitySet="WeatherEntries" />
+            <End Role="WeatherValues" EntitySet="WeatherValues" />
+          </AssociationSet>
+          <AssociationSet Name="WeatherTypes" Association="Self.WeatherTypes">
+            <End Role="PgoWeathers" EntitySet="PgoWeathers" />
+            <End Role="PokemonTypes" EntitySet="PokemonTypes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WeatherBotModelStoreContainer" CdmEntityContainer="PokeEntities">
+          <EntitySetMapping Name="ConfigSettings">
+            <EntityTypeMapping TypeName="WeatherBotModel.ConfigSetting">
+              <MappingFragment StoreEntitySet="ConfigSettings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PgoWeathers">
+            <EntityTypeMapping TypeName="WeatherBotModel.PgoWeather">
+              <MappingFragment StoreEntitySet="PgoWeathers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="IsDay" ColumnName="IsDay" />
+                <ScalarProperty Name="IsNight" ColumnName="IsNight" />
+                <ScalarProperty Name="Friendly" ColumnName="Friendly" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PokemonTypes">
+            <EntityTypeMapping TypeName="WeatherBotModel.PokemonType">
+              <MappingFragment StoreEntitySet="PokemonTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PokeUsers">
+            <EntityTypeMapping TypeName="WeatherBotModel.PokeUser">
+              <MappingFragment StoreEntitySet="PokeUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TrainerName" ColumnName="TrainerName" />
+                <ScalarProperty Name="TrainerLevel" ColumnName="TrainerLevel" />
+                <ScalarProperty Name="DiscordName" ColumnName="DiscordName" />
+                <ScalarProperty Name="DiscordTag" ColumnName="DiscordTag" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="ResetToken" ColumnName="ResetToken" />
+                <ScalarProperty Name="PwdHash" ColumnName="PwdHash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeatherEntries">
+            <EntityTypeMapping TypeName="WeatherBotModel.WeatherEntry">
+              <MappingFragment StoreEntitySet="WeatherEntry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Hour" ColumnName="Hour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeatherTranslations">
+            <EntityTypeMapping TypeName="WeatherBotModel.WeatherTranslation">
+              <MappingFragment StoreEntitySet="WeatherTranslations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IconText" ColumnName="IconText" />
+                <ScalarProperty Name="CanWindy" ColumnName="CanWindy" />
+                <ScalarProperty Name="IsDay" ColumnName="IsDay" />
+                <ScalarProperty Name="IsNight" ColumnName="IsNight" />
+                <ScalarProperty Name="PgoIconId" ColumnName="PgoIconId" />
+                <ScalarProperty Name="WindOverrideVal" ColumnName="WindOverrideVal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeatherValues">
+            <EntityTypeMapping TypeName="WeatherBotModel.WeatherValue">
+              <MappingFragment StoreEntitySet="WeatherValues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="WeatherIcon" ColumnName="WeatherIcon" />
+                <ScalarProperty Name="IconPhrase" ColumnName="IconPhrase" />
+                <ScalarProperty Name="IsDaylight" ColumnName="IsDaylight" />
+                <ScalarProperty Name="TempValue" ColumnName="TempValue" />
+                <ScalarProperty Name="TempUnit" ColumnName="TempUnit" />
+                <ScalarProperty Name="WindSpeed" ColumnName="WindSpeed" />
+                <ScalarProperty Name="WindUnit" ColumnName="WindUnit" />
+                <ScalarProperty Name="GustSpeed" ColumnName="GustSpeed" />
+                <ScalarProperty Name="GustUnit" ColumnName="GustUnit" />
+                <ScalarProperty Name="PrecipitationProbability" ColumnName="PrecipitationProbability" />
+                <ScalarProperty Name="RainProbability" ColumnName="RainProbability" />
+                <ScalarProperty Name="SnowProbability" ColumnName="SnowProbability" />
+                <ScalarProperty Name="IceProbability" ColumnName="IceProbability" />
+                <ScalarProperty Name="CloudCover" ColumnName="CloudCover" />
+                <ScalarProperty Name="RainAmt" ColumnName="RainAmt" />
+                <ScalarProperty Name="RainUnit" ColumnName="RainUnit" />
+                <ScalarProperty Name="SnowAmt" ColumnName="SnowAmt" />
+                <ScalarProperty Name="SnowUnit" ColumnName="SnowUnit" />
+                <ScalarProperty Name="IceAmt" ColumnName="IceAmt" />
+                <ScalarProperty Name="IceUnit" ColumnName="IceUnit" />
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+                <ScalarProperty Name="ActualIcon" ColumnName="ActualIcon" />
+                <ScalarProperty Name="CalculatedIcon" ColumnName="CalculatedIcon" />
+                <ScalarProperty Name="IsBaseHour" ColumnName="IsBaseHour" />
+                <ScalarProperty Name="PgoIconId" ColumnName="PgoIconId" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="ActualIconid" ColumnName="ActualIconid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="WeatherTypes" TypeName="WeatherBotModel.WeatherTypes" StoreEntitySet="WeatherTypes">
+            <EndProperty Name="PgoWeathers">
+              <ScalarProperty Name="Id" ColumnName="WeatherId" />
+            </EndProperty>
+            <EndProperty Name="PokemonTypes">
+              <ScalarProperty Name="Id" ColumnName="TypeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

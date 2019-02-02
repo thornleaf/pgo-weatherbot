@@ -1,0 +1,289 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+.checklist-xs {
+    display: inline-block;
+    width: 12%;
+    margin: .2em;
+    border: 1pt solid #808080;
+    border-radius: 10%;
+    height: 2.5em;
+    background-color: #eeeeee;
+    background-size: contain;
+}
+
+.selected-xs {
+    border: 1.5pt solid #007606;
+    background-color: #bae8bc;
+}
+
+.boosted { font-weight: bold; font-style: italic; }
+.img-xs {
+    display: block;
+    height: 30px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: hidden;
+}
+.img-sm {
+    width: 20px;
+    height: auto;
+    margin: 2px;
+}
+
+.img-boosted {
+    border: 2px solid #d02b2b;
+    border-radius: 50%;
+}
+
+.type-sm {
+    width: 20px;
+    height: auto;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin: 1px;
+}
+
+.img-list {
+    display: inline-block;
+    height: 1.5em;
+    width: auto;
+    margin-top: -.25em;
+}
+
+.checklist {
+    display: block;
+    width: 100%;
+    border: 1px solid #808080;
+    background-color: #eeeeee;
+    text-align: center;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.selected {
+    border: 2px solid #007606;
+    background-color: #bae8bc;
+}
+
+/*
+.clearNight {
+    background-color: midnightblue;
+}
+.clearDay {
+    background-color: #38d8f5;
+}
+.fog {
+    background-color: silver;
+}
+.rain {
+    background-color: #4a748f;
+}
+.snow {
+    background-color: #8bd7f6;
+}
+.windy {
+    background-color: #bb8181;
+}
+.cloudy {
+    background-color: slategrey;
+}
+.partlyCloudyNight {
+    background-color: #60558b;
+}
+.partlyCloudyDay {
+    background-color: #93e6eb;
+}
+    */
+
+.clearNight, .clearDay {
+    /* fire, ground, grass */
+    background: #60b954; /* Old browsers #60b954 #ff9c54 #d97745 */
+    background: -moz-linear-gradient(top, #60b954 0%, #ff9c54 50%, #d97745 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #60b954 0%,#ff9c54 50%,#d97745 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #60b954 0%,#ff9c54 50%,#d97745 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#60b954', endColorstr='d97745',GradientType=0 ); /* IE6-9 */
+}
+
+.fog {
+    /* dark #5a5366, ghost #5469ad */
+    background: #5a5366; /* Old browsers */
+    background: -moz-linear-gradient(top, #5a5366 0%, #5469ad 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #5a5366 0%,#5469ad 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #5a5366 0%,#5469ad 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a5366', endColorstr='#5469ad',GradientType=0 ); /* IE6-9 */
+}
+
+.rain {
+    /* water, bug, electric */
+    background: #4f92d6; /* Old browsers */
+    background: -moz-linear-gradient(top, #4f92d6 0%, #90c12d 50%, #f4d23d 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #4f92d6 0%,#90c12d 50%,#f4d23d 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #4f92d6 0%,#90c12d 50%,#f4d23d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f92d6', endColorstr='#f4d23d',GradientType=0 ); /* IE6-9 */
+}
+
+.snow {
+    /* ice, steel */
+    background: #74cec1; /* Old browsers */
+    background: -moz-linear-gradient(top, #74cec1 0%, #53889c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #74cec1 0%,#53889c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #74cec1 0%,#53889c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#74cec1', endColorstr='#53889c',GradientType=0 ); /* IE6-9 */
+}
+
+.windy {
+    /* flying #91aade, dragon #0969c1, psychic #f86e73 */
+    background: #91aade; /* Old browsers */
+    background: -moz-linear-gradient(top, #91aade 0%, #0969c1 50%, #f86e73 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #91aade 0%,#0969c1 50%,#f86e73 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #91aade 0%,#0969c1 50%,#f86e73 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#91aade', endColorstr='#f86e73',GradientType=0 ); /* IE6-9 */
+}
+
+.cloudy {
+    /* fairy #ec8ce3, fighting #ce406a, poison #a566c7 */
+    background: #ec8ce3; /* Old browsers */
+    background: -moz-linear-gradient(top, #ec8ce3 0%, #ce406a 50%, #a566c7 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ec8ce3 0%,#ce406a 50%,#a566c7 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ec8ce3 0%,#ce406a 50%,#a566c7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ec8ce3', endColorstr='#a566c7',GradientType=0 ); /* IE6-9 */
+}
+
+.partlyCloudyNight, .partlyCloudyDay {
+    /* normal, rock */
+    background: #c8b88b; /* Old browsers */
+    background: -moz-linear-gradient(top,#9099a1 0%, #c8b88b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #9099a1 0%,#c8b88b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #9099a1 0%,#c8b88b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9099a1', endColorstr='#c8b88b',GradientType=0 ); /* IE6-9 */
+}
+
+.normal, .Normal {
+    background-color: #9099a1;
+    color: white;
+}
+.fighting, .Fighting {
+    background-color: #ce406a;
+    color: white;
+}
+.flying, .Flying {
+    background-color: #91aade;
+    color: white;
+}
+.poison, .Poison {
+    background-color: #a566c7;
+    color: white;
+}
+.ground, .Ground {
+    background-color: #d97745;
+    color: white;
+}
+.rock, .Rock {
+    background-color: #c8b88b;
+    color: white;
+}
+.bug, .Bug {
+    background-color: #90c12d;
+    color: white;
+}
+.ghost, .Ghost {
+    background-color: #5469ad;
+    color: white;
+}
+.steel, .Steel {
+    background-color: #53889c;
+    color: white;
+}
+.fire, .Fire {
+    background-color: #ff9c54;
+    color: white;
+}
+.water, .Water {
+    background-color: #4f92d6;
+    color: white;
+}
+.grass, .Grass {
+    background-color: #60b954;
+    color: white;
+}
+.electric, .Electric {
+    background-color: #f4d23d;
+    color: white;
+}
+.psychic, .Psychic {
+    background-color: #f86e73;
+    color: white;
+}
+.ice, .Ice {
+    background-color: #74cec1;
+    color: white;
+}
+.dragon, .Dragon {
+    background-color: #0969c1;
+    color: white;
+}
+.dark, .Dark {
+    background-color: #5a5366;
+    color: white;
+}
+.fairy, .Fairy {
+    background-color: #ec8ce3;
+    color: white;
+}
+.typeBadge {
+    display: block;
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 2.5px 2.5px;
+}
+.typeBadgeLg {
+    display: block;
+    float: left;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding: 8px 7px;
+}
+.hour8 {
+    width: 10%;
+}
+.typeahead-demo .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+}
+
+    .typeahead-demo .custom-popup-wrapper > .message {
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+        color: #868686;
+    }
+
+    .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+        position: static;
+        float: none;
+        display: block;
+        min-width: 160px;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }

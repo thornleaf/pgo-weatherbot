@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="pokeTools" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="pokeTools" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="pokeTools" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="pokeTools" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>PokeTools</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="icon" href="~/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="~/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="~/favicon-96x96.png" sizes="96x96" type="image/png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body ng-controller="IndexController">
+    @RenderBody()
+    <div class="poke-footer navbar-fixed-bottom hidden-xs" style="background-color: #222">
+        <div class="container">
+            <div class="col-sm-12">
+                <p class="text-right text-muted small" style="margin: 8px 0 8px 0;">&copy; @DateTime.Now.Year v. 20190124.01</p>
+            </div>
+
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

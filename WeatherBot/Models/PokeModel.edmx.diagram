@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a2bb17f263504331a7dcdfbb213b90c6" Name="Diagram1">
+        <EntityTypeShape EntityType="WeatherBotModel.ConfigSetting" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeatherBotModel.PgoWeather" Width="1.5" PointX="3.125" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeatherBotModel.PokemonType" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeatherBotModel.PokeUser" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeatherBotModel.WeatherEntry" Width="1.5" PointX="3.125" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeatherBotModel.WeatherTranslation" Width="1.5" PointX="3.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeatherBotModel.WeatherValue" Width="1.5" PointX="6" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="WeatherBotModel.FK_WeatherTranslations_Weathers" ManuallyRouted="false" />
+        <AssociationConnector Association="WeatherBotModel.FK_WeatherValues_PgoWeathers" ManuallyRouted="false" />
+        <AssociationConnector Association="WeatherBotModel.FK_WeatherValues_WeatherEntry" ManuallyRouted="false" />
+        <AssociationConnector Association="WeatherBotModel.WeatherTypes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

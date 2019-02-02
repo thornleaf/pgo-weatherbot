@@ -1,0 +1,148 @@
+﻿<div class="container">
+
+    <h3>
+        AccuWeather Forecast: <span ng-bind="wq.histDate | date: 'mediumDate'"></span>
+        <button class="close" ng-show="currentUser" data-toggle="modal" data-target="#adminModal"><i class="fa fa-gears"></i></button>
+    </h3>
+    <table class="table-condensed">
+        <tr>
+            <th colspan="7">Weather Boosts</th>
+        </tr>
+        <tr class="small">
+            <td>
+                <span class="badge clearDay">
+                    <img src="Images/weather/white/weatherIcon_small_sunny.png" width="30" height="30" />
+                    <img src="Images/weather/white/weatherIcon_small_clear.png" width="30" height="30" /><br />
+                    Sunny/Clear<br />
+                    <img src="Images/types/color/grass.png" class="type-sm" />
+                    <img src="Images/types/color/fire.png" class="type-sm" />
+                    <img src="Images/types/color/ground.png" class="type-sm" />
+                </span>
+            </td>
+            <td>
+                <span class="badge partlyCloudyDay">
+                    <img src="Images/weather/white/weatherIcon_small_partlycloudy_day.png" width="30" height="30" />
+                    <img src="Images/weather/white/weatherIcon_small_partlycloudy_night.png" width="30" height="30" /><br />
+                    Partly Cloudy<br />
+                    <img src="Images/types/color/normal.png" class="type-sm" />
+                    <img src="Images/types/color/rock.png" class="type-sm" />
+                </span>
+            </td>
+            <td>
+                <span class="badge cloudy">
+                    <img src="Images/weather/white/weatherIcon_small_cloudy.png" width="30" height="30" /><br />
+                    Cloudy<br />
+                    <img src="Images/types/color/fairy.png" class="type-sm" />
+                    <img src="Images/types/color/fighting.png" class="type-sm" />
+                    <img src="Images/types/color/poison.png" class="type-sm" />
+                </span>
+            </td>
+            <td>
+                <span class="badge rain">
+                    <img src="Images/weather/white/weatherIcon_small_rain.png" width="30" height="30" /><br />
+                    Rain<br />
+                    <img src="Images/types/color/water.png" class="type-sm" />
+                    <img src="Images/types/color/bug.png" class="type-sm" />
+                    <img src="Images/types/color/electric.png" class="type-sm" />
+                </span>
+            </td>
+            <td>
+                <span class="badge snow">
+                    <img src="Images/weather/white/weatherIcon_small_snow.png" width="30" height="30" /><br />
+                    Snow<br />
+                    <img src="Images/types/color/ice.png" class="type-sm" />
+                    <img src="Images/types/color/steel.png" class="type-sm" />
+                </span>
+            </td>
+            <td>
+                <span class="badge windy">
+                    <img src="Images/weather/white/weatherIcon_small_windy.png" width="30" height="30" /><br />
+                    Windy<br />
+                    <img src="Images/types/color/flying.png" class="type-sm" />
+                    <img src="Images/types/color/dragon.png" class="type-sm" />
+                    <img src="Images/types/color/psychic.png" class="type-sm" />
+                </span>
+            </td>
+            <td>
+                <span class="badge fog">
+                    <img src="Images/weather/white/weatherIcon_small_fog.png" width="30" height="30" /><br />
+                    Fog<br />
+                    <img src="Images/types/color/dark.png" class="type-sm" />
+                    <img src="Images/types/color/ghost.png" class="type-sm" />
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="form-horizontal">
+        <label class="checkbox-inline">
+            <input type="checkbox" ng-model="disc" /> View posted forecasts only
+        </label>
+    </div>
+    <br />
+    <table class="table table-condensed">
+        <tr>
+            <th>Forecast Time</th>
+            <th colspan="13">Hourly Forecasts</th>
+        </tr>
+        <tr ng-repeat="wh in weatherHistory | orderBy: '-id'" ng-class="{'info text-info': (wh.hour==baseHour  || wh.hour == baseHour + 8 || wh.hour == baseHour + 16)}" ng-hide="disc && !(wh.hour==baseHour  || wh.hour == baseHour + 8 || wh.hour == baseHour + 16)">
+            <td>
+                <p class="strong small" ng-bind="wh.dateCreated | date: 'h a'"></p>
+                <p class="text-center">
+                    <button class="btn btn-default btn-xs" ng-click="wh.details = !wh.details" ng-class="wh.details && 'active'">
+                        <i class="fa" ng-class="wh.details && 'fa-eye-slash' || 'fa-eye'"></i>
+                    </button>
+                </p>
+            </td>
+            <td ng-repeat="w in wh.weatherValues" class="text-center" ng-class="{'success': w.isCorrect===true, 'danger': w.isCorrect===false}">
+                <span class="badge" ng-show="!currentUser" ng-class="colors(w.pgoWeather.id)">
+                    <b class="small" ng-bind="w.dateTime | date: 'h a'"></b><br />
+                    <img ng-show="w.pgoWeather" ng-src="Images/weather/white/{{w.pgoWeather.fileName}}" style="width: 50%; height: 50%" />
+                </span>
+                <div ng-show="currentUser">
+                    <div class="btn-group">
+                        <span class="badge dropdown-toggle" ng-class="colors(w.pgoWeather.id)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <b class="small" ng-bind="w.dateTime | date: 'h a'"></b><br />
+                            <img ng-show="w.pgoWeather" ng-src="Images/weather/white/{{w.pgoWeather.fileName}}" style="width: 50%; height: 50%" />
+                            <img ng-show="!w.pgoWeather" ng-src="Images/weather/white/weatherIcon_small_{{w.weatherObj.icon}}.png" style="width: 50%; height: 50%">
+                            <span class="caret"></span>
+                        </span>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="v in correctVals">
+                                <a href="" ng-click="saveValue(w.id, v); w.isCorrect = v">
+                                    <span ng-show="v===true">True</span>
+                                    <span ng-show="v===false">False</span>
+                                    <span ng-show="v===null">Unknown</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <span class="small" ng-class="w.pgoWeather.id == 6 && 'text-danger'"><span ng-bind="w.windSpeed + ' ' + w.Wind.Speed.Unit"></span></span> /
+                    <i class="small" ng-class="w.pgoWeather.id == 6 && 'text-danger'"><span ng-bind="w.gustSpeed + ' ' + w.WindGust.Speed.Unit"></span></i><br />
+                    <div class="form-group form-group-sm">
+                        <select class="form-control" ng-model="w.actualIconid" ng-show="w.isCorrect === false" ng-change="saveActual(w)" ng-options="o.id as o.description for o in weatherOptions | orderBy: 'id'"></select>
+                    </div>
+                </div>
+                <div class="small" ng-show="wh.details">
+                    <p ng-bind="w.iconPhrase"></p>
+                    <p ng-class="{'text-success': w.windSpeed < 22, 'text-warning': w.windSpeed >= 22 && w.windSpeed < 25, 'text-danger': w.windSpeed >= 25}">
+                        Wind: <span ng-bind="w.windSpeed + ' km/h'"></span>
+                    </p>
+                    <p>Gusts: <span ng-bind="w.gustSpeed + ' km/h'"></span></p>
+                    <p ng-show="w.precipitationProbability > 0">Precip <span ng-bind="w.precipitationProbability"></span></p>
+                    <p ng-show="w.rainProbability > 0">Rain <span ng-bind="w.rainProbability"></span>% (<span ng-bind="w.rainAmt | number: 1"></span> <span ng-bind="w.rainUnit"></span>)</p>
+                    <p ng-show="w.snowProbability > 0">Snow <span ng-bind="w.snowProbability"></span>% (<span ng-bind="w.snowAmt | number: 1"></span> <span ng-bind="w.snowUnit"></span>)</p>
+                    <p ng-show="w.iceProbability > 0">Ice <span ng-bind="w.iceProbability"></span>% (<span ng-bind="w.iceAmt | number: 1"></span> <span ng-bind="w.iceUnit"></span>)</p>
+                    <p ng-show="w.cloudCover > 0">Cloud Cover: <span ng-bind="w.cloudCover"></span>%</p>
+                </div>
+            </td>
+            <td ng-show="currentUser">
+                <input type="checkbox" ng-model="reallyDelete" />
+                <button class="btn btn-xs btn-danger" ng-click="delHist(wh.id, reallyDelete)"><i class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+    </table>
+    <h6 class="text-info" ng-show="loading"><i class="fa fa-spinner fa-pulse"></i> Loading, please wait...</h6>
+</div>
+<div ng-include="'Partials/weather/weather-admin.html'"></div>
+<div ng-include="'Partials/weather/translate.html'"></div>
