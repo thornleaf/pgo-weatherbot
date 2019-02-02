@@ -60,5 +60,8 @@ I live in southern/central Ontario, Canada, so we’ve yet to see a forecast tha
 * Once you have the geocoordinates for your cell (and your API key), get the location id using [this AccuWeather Location API](https://developer.accuweather.com/accuweather-locations-api/apis/get/locations/v1/cities/geoposition/search)
 * Learn about Discord webhooks [here](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
 
+##### One last note:
+This is a port of a much bigger app that I use for my own Discord, which includes pokedex info and posts boosted bosses along with boosted types. I tried to clean up all of the extraneous stuff and pare this down to just what was required, but I know I've missed a few things here and there. I will tidy it all up as I have time.
+
 As a very good friend of mine often says...
   *Godspeed, little doodles*
