@@ -2,7 +2,7 @@
 Get accurate in-game forecasts for Pokemon GO delivered straight to your Discord server
 
 Everything I Know About In-Game Weather
-Niantic uses AccuWeather hourly forecasts to determine in-game weather. Furthermore, there is a 1:1 correlation (with windy exceptions) between AccuWeather’s icon id/text names and in-game weather boosts and visual effects. Since visual effects don’t have an impact on gameplay, I’m focusing on weather boosts here. 
+Niantic uses AccuWeather hourly forecasts to determine in-game weather. There is a 1:1 correlation (with windy exceptions) between AccuWeather’s icon id/text names and in-game weather boosts and visual effects. Since visual effects don’t have an impact on gameplay, I’m focusing on weather boosts here. 
 
 I am less confident about the size of s2 cells that Niantic uses for weather (if they even use s2 cells for this) - but casual observations in my area lead me to believe that they are level 9 cells. That said, driving over a level 10 cell boundary while there is an Extreme Weather alert active for both sides of the boundary will still trigger the pop-up, while smaller cell boundaries will not.
 
