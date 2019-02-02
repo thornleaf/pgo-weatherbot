@@ -436,6 +436,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="SQL\DbTables.sql" />
+    <Content Include="SQL\InsertData.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

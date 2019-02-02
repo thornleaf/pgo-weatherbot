@@ -88,7 +88,7 @@ namespace WeatherBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to data source=lady\sqlexpress;initial catalog=WeatherBot;persist security info=True;user id=pokeuser;password=Kr1st1n4;MultipleActiveResultSets=True;App=EntityFramework.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ConnectionString {
             get {

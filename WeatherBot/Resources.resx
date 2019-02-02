@@ -128,7 +128,7 @@
     <comment>AccuWeather API Key</comment>
   </data>
   <data name="ConnectionString" xml:space="preserve">
-    <value>data source=lady\sqlexpress;initial catalog=WeatherBot;persist security info=True;user id=pokeuser;password=Kr1st1n4;MultipleActiveResultSets=True;App=EntityFramework</value>
+    <value />
     <comment>your db connection string</comment>
   </data>
   <data name="DiscordWebhook" xml:space="preserve">
