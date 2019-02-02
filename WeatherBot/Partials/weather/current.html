@@ -2,7 +2,7 @@
 
     <h3>
         AccuWeather Forecast: <span ng-bind="wq.histDate | date: 'mediumDate'"></span>
-        <button class="close" ng-show="currentUser" data-toggle="modal" data-target="#adminModal"><i class="fa fa-gears"></i></button>
+        <button class="close" ng-show="currentUser" data-toggle="modal" data-target="#adminModal"><i class="fa fa-cogs"></i></button>
     </h3>
     <table class="table-condensed">
         <tr>
@@ -87,11 +87,15 @@
         </tr>
         <tr ng-repeat="wh in weatherHistory | orderBy: '-id'" ng-class="{'info text-info': (wh.hour==baseHour  || wh.hour == baseHour + 8 || wh.hour == baseHour + 16)}" ng-hide="disc && !(wh.hour==baseHour  || wh.hour == baseHour + 8 || wh.hour == baseHour + 16)">
             <td>
-                <p class="strong small" ng-bind="wh.dateCreated | date: 'h a'"></p>
-                <p class="text-center">
-                    <button class="btn btn-default btn-xs" ng-click="wh.details = !wh.details" ng-class="wh.details && 'active'">
+                <p class="strong small">
+                    <span ng-bind="wh.dateCreated | date: 'h a'"></span>
+                    <button class="btn btn-default btn-xs pull-right" ng-click="wh.details = !wh.details" ng-class="wh.details && 'active'">
                         <i class="fa" ng-class="wh.details && 'fa-eye-slash' || 'fa-eye'"></i>
                     </button>
+                </p>
+                <p class="small" ng-show="currentUser" ng-init="nd=convertDate(wh.dateCreated)" ng-bind="nd"></p>
+                <p class="text-center">
+
                 </p>
             </td>
             <td ng-repeat="w in wh.weatherValues" class="text-center" ng-class="{'success': w.isCorrect===true, 'danger': w.isCorrect===false}">

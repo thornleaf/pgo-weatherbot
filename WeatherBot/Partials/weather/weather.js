@@ -87,6 +87,13 @@ angular.module('pokeTools.weather', ['ngRoute'])
         $scope.makeTime = function () {
             return new Date();
         };
+        $scope.convertDate = function (d) {
+            console.log(d);
+            var nd = new Date(d);
+            var hr = nd.getHours();
+            var utc = nd.toUTCString();
+            return utc;
+        };
         $scope.config = {};
         $scope.baseHour = 7;
         $scope.getConfig = function () {
