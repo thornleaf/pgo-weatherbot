@@ -28,10 +28,11 @@ If you don't know what the pull time is, use 1 am to start, and adjust once you 
 If everything is set up correctly, the bot will collect hourly forecasts and then post the pull-time forecasts (in 8 hour blocks) to your webhook.
 
 Your posted forecasts on Discord will look a lot like this (but without any mention of boosted bosses):
-![Forecast](https://github.com/thornleaf/repository/WeatherBot/Images/samples/Forecast.PNG)
+
+![Forecast](https://github.com/thornleaf/pgo-weatherbot/blob/master/WeatherBot/Images/samples/Forecast.PNG?raw=true)
 
 And the weather page, once the app has collected some data, should look something like this:
-![WebForecast](https://github.com/thornleaf/repository/WeatherBot/Images/samples/WebForecast.PNG)
+![WebForecast](https://github.com/thornleaf/pgo-weatherbot/blob/master/WeatherBot/Images/samples/WebForecast.PNG?raw=true)
 
 ##### Everything I Know About In-Game Weather
 
