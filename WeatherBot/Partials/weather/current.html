@@ -94,9 +94,6 @@
                     </button>
                 </p>
                 <p class="small" ng-show="currentUser" ng-init="nd=convertDate(wh.dateCreated)" ng-bind="nd"></p>
-                <p class="text-center">
-
-                </p>
             </td>
             <td ng-repeat="w in wh.weatherValues" class="text-center" ng-class="{'success': w.isCorrect===true, 'danger': w.isCorrect===false}">
                 <span class="badge" ng-show="!currentUser" ng-class="colors(w.pgoWeather.id)">
