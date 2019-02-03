@@ -5,6 +5,8 @@
 This project is not terribly well-coded, but it works for me. I am a self-taught programmer with an educational background in social science, not computer science...  
 It should have code-first db creation and seeding. It does not. One day I will probably add that, if I ever have time...
 
+ALSO: GitHub LIES. While there is a lot of JavaScript in this project (including AngularJS 1.7.x) it'd be a misnomer to call it a JavaScript project. It's a .NET MVC6 Web API 2 project. Sorry. *shrugs*
+
 ## TO RUN:
 
 1. Clone the project and open  the .sln file in Visual Studio
@@ -24,6 +26,12 @@ Before it will work, you will need to log in using the admin credentials, go to 
 If you don't know what the pull time is, use 1 am to start, and adjust once you figure it out.
 
 If everything is set up correctly, the bot will collect hourly forecasts and then post the pull-time forecasts (in 8 hour blocks) to your webhook.
+
+Your posted forecasts on Discord will look a lot like this (but without any mention of boosted bosses):
+[[https://github.com/thornleaf/repository/WeatherBot/Images/samples/Forecast.PNG|alt=Forecast]]
+
+And the weather page, once the app has collected some data, should look something like this:
+[[https://github.com/thornleaf/repository/WeatherBot/Images/samples/WebForecast.PNG|alt=WebForecast]]
 
 ##### Everything I Know About In-Game Weather
 

@@ -276,6 +276,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\samples\Forecast.PNG" />
     <Content Include="Images\ic_pikachu.png" />
     <Content Include="Images\ic_pokedex.png" />
     <Content Include="Images\ic_pokedex_sm.png" />
@@ -356,6 +357,7 @@
     <Content Include="Images\weather\white\weatherIcon_small_snow.png" />
     <Content Include="Images\weather\white\weatherIcon_small_sunny.png" />
     <Content Include="Images\weather\white\weatherIcon_small_windy.png" />
+    <Content Include="Images\samples\WebForecst.PNG" />
     <Content Include="Models\PokeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PokeModel.edmx</DependentUpon>
