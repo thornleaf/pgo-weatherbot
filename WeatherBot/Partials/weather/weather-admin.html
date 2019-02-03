@@ -47,10 +47,7 @@
                         <label class="control-label col-sm-4">Force Discord</label>
                         <div class="col-sm-8">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default" ng-click="server = 'ld'" ng-class="server == 'ld' && 'active'">
-                                    <i class="fa" ng-class="server == 'ld' && 'fa-dot-circle-o' || 'fa-circle-o'"></i> LD
-                                </button>
-                                <button type="button" class="btn btn-default" ng-click="discord(server)" ng-disabled="!server"><i class="fa fa-clock-o"></i> Now</button>
+                                <button type="button" class="btn btn-default" ng-click="discord()" ng-disabled="!server"><i class="fa fa-clock-o"></i> Now</button>
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-disabled="!server">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
@@ -66,7 +63,7 @@
                     <div class="form-group">
                         <div class="col-sm-8 col-sm-offset-4">
                             <button class="btn btn-warning" data-toggle="modal" data-target="#transModal"><i class="fa fa-cloud-upload"></i> Translations</button>
-                            <button class="btn btn-danger" ng-click="forceWeather()"><i class="fa fa-exclamation-triangle"></i> AccuWeather</button>
+                            <button class="btn btn-danger" ng-click="forceWeather()"><i class="fa fa-exclamation-triangle"></i> Pull AccuWeather Now</button>
                         </div>
                     </div>
                 </div>
