@@ -32,7 +32,7 @@ Your posted forecasts on Discord will look a lot like this (but without any ment
 ![Forecast](https://github.com/thornleaf/pgo-weatherbot/blob/master/WeatherBot/Images/samples/Forecast.PNG?raw=true)
 
 And the weather page, once the app has collected some data, should look something like this:
-![WebForecast](https://github.com/thornleaf/pgo-weatherbot/blob/master/WeatherBot/Images/samples/WebForecast.PNG?raw=true)
+![WebForecast](https://github.com/thornleaf/pgo-weatherbot/blob/master/WeatherBot/Images/samples/WebForecst.PNG?raw=true)
 
 ##### Everything I Know About In-Game Weather
 
