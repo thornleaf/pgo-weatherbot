@@ -20,9 +20,6 @@ namespace WeatherBot
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
-            // check for admin and if none, add one
-            InitializeDb.Initialize();
         }
 
     }

@@ -50,7 +50,7 @@ namespace WeatherBot.Controllers
                     //w.PokeWeather = new PgoWeather();
                     WeatherTranslation wt = db.WeatherTranslations.Find(w.WeatherIcon);
                     int weatherId;
-                    if (wt.CanWindy == true && (w.Wind.Speed.Value + w.WindGust.Speed.Value > 55))
+                    if (wt.CanWindy == true && (w.Wind.Speed.Value > 29 || w.WindGust.Speed.Value > 31)) // (OR IS IT SUM OF THESE ? 55? This works for me, anyway)
                     {
                         w.PokeWeather = db.PgoWeathers.Find(6);
                         weatherId = 6;
